@@ -30,7 +30,6 @@ public class HelloController {
     }
     @GetMapping(value = "/hello/{name}")
     public String hello(@PathVariable("name") String name){
-
         return "Hello " + name;
     }
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
