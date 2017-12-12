@@ -18,19 +18,29 @@ public class HelloController {
 
 
     /**
-     *
+     * <p>description: </p>
+     * <p>{name}的位置可以放在/hello/{name}或者/{name}/hello/</p>
      * @param name
-     * @return
+     * @author minghuiZhang
+     * @date 23:38 2017/12/12
+     *
      */
-    //{name}的位置可以放在/hello/{name}或者/{name}/hello/
     @RequestMapping(value = "/hello/{name}",method = RequestMethod.GET)
     public String helloP(@PathVariable("name") String name){
 
         return "Hello " + name;
     }
-
+    /**
+     * <p>description: </p>
+     * <p></p>
+     * @param name
+     * @author minghuiZhang
+     * @date 23:36 2017/12/12
+     *
+     */
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String helloR(@RequestParam(value = "name",defaultValue = "zmh") String name){
+
         return "Hello " + name;
     }
 
