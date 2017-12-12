@@ -28,10 +28,7 @@ public class HelloController {
 
         return "Hello " + name;
     }
-    @GetMapping(value = "/hello/{name}")
-    public String hello(@PathVariable("name") String name){
-        return "Hello " + name;
-    }
+
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String helloR(@RequestParam(value = "name",defaultValue = "zmh") String name){
         return "Hello " + name;
