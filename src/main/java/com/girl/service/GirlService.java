@@ -21,7 +21,6 @@ public class GirlService {
 
     /**
      * <p>description：插入两个girl</p>
-     * <p>            </p>
      * @param
      * @author: minghuiZhang.
      * @date: created in 9:01 2017/12/13
@@ -53,5 +52,14 @@ public class GirlService {
             throw new GirlException(ResultEnum.GO_JUNIOR_SCHOOL);
         }
 
+    }
+    /**
+     * <p>description：通过女生查看一个女生的信息</p>
+     * @param id 女生id
+     * @author: minghuiZhang.
+     * @date: created in 17:07 2017/12/13
+     */
+    public Girl findOne(Integer id){
+        return girlRepository.findOne(id);
     }
 }

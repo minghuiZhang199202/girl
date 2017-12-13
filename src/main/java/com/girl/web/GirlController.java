@@ -122,6 +122,7 @@ public class GirlController extends BaseController{
     public void girlAddTwo(){
         girlService.saveTwo();
     }
+
     @GetMapping(value = "/girls/getAge/{id}")
     public void getAge(@PathVariable("id") Integer id)throws Exception{
         girlService.getAge(id);
