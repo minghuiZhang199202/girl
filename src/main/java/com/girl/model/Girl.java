@@ -1,10 +1,11 @@
-package com.zmh.girl.model;
+package com.girl.model;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 /**
  * <p>@author minghui_zhang </p>
@@ -20,5 +21,6 @@ public class Girl {
     private Integer id;
     private String name;
     private String cupSize;
+    @Min(value = 18,message = "未成年少女禁止入内")
     private Integer age;
 }

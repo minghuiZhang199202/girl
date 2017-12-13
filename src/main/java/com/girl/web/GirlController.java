@@ -1,11 +1,14 @@
-package com.zmh.girl.web;
+package com.girl.web;
 
-import com.zmh.girl.model.Girl;
-import com.zmh.girl.persistence.GirlRepository;
-import com.zmh.girl.service.GirlService;
+import com.girl.model.Girl;
+import com.girl.persistence.GirlRepository;
+import com.girl.service.GirlService;
+import com.zmh.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  * <p>modified by   </p>
  */
 @RestController
-public class GirlController {
+public class GirlController extends BaseController{
     @Autowired
     private GirlRepository girlRepository;
     @Autowired
@@ -53,7 +56,12 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girlObject")
-    public Girl girlAdd(Girl girl){
+    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            logger.debug(bindingResult.getFieldError());
+            logger.error(""+bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
         return girlRepository.save(girl);
     }
 

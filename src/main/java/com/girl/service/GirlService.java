@@ -1,7 +1,7 @@
-package com.zmh.girl.service;
+package com.girl.service;
 
-import com.zmh.girl.model.Girl;
-import com.zmh.girl.persistence.GirlRepository;
+import com.girl.model.Girl;
+import com.girl.persistence.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

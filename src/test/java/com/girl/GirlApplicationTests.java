@@ -1,4 +1,4 @@
-package com.zmh.girl;
+package com.girl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

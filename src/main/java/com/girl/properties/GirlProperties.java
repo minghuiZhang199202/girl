@@ -1,4 +1,4 @@
-package com.zmh.girl.model;
+package com.girl.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

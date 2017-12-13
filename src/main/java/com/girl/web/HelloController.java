@@ -1,9 +1,7 @@
-package com.zmh.girl.web;
+package com.girl.web;
 
-import com.zmh.girl.model.GirlProperties;
+import com.girl.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -32,7 +30,6 @@ public class HelloController {
     }
     /**
      * <p>description: </p>
-     * <p></p>
      * @param name
      * @author minghuiZhang
      * @date 23:36 2017/12/12

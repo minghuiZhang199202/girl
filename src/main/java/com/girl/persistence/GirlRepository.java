@@ -1,6 +1,6 @@
-package com.zmh.girl.persistence;
+package com.girl.persistence;
 
-import com.zmh.girl.model.Girl;
+import com.girl.model.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
