@@ -18,9 +18,9 @@ public class HelloController {
     /**
      * <p>description: </p>
      * <p>{name}的位置可以放在/hello/{name}或者/{name}/hello/</p>
-     * @param name
+     * @param name 姓名
      * @author minghuiZhang
-     * @date 23:38 2017/12/12
+     * date 23:38 2017/12/12
      *
      */
     @RequestMapping(value = "/hello/{name}",method = RequestMethod.GET)
@@ -30,9 +30,9 @@ public class HelloController {
     }
     /**
      * <p>description: </p>
-     * @param name
+     * @param name 姓名
      * @author minghuiZhang
-     * @date 23:36 2017/12/12
+     * date 23:36 2017/12/12
      *
      */
     @RequestMapping(value = "/hello",method = RequestMethod.GET)

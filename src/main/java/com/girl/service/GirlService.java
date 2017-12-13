@@ -1,5 +1,7 @@
 package com.girl.service;
 
+import com.girl.enums.ResultEnum;
+import com.girl.girlexception.GirlException;
 import com.girl.model.Girl;
 import com.girl.persistence.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +39,19 @@ public class GirlService {
         girlB.setCupSize("CC");
         girlRepository.save(girlA);
         girlRepository.save(girlB);
+    }
+
+
+    public void getAge(Integer id) throws Exception{
+        Girl girl = girlRepository.findOne(id);
+        Integer age = girl.getAge();
+        if (age < 10){
+            //code 100
+           throw new GirlException(ResultEnum.GO_PRIMARY);
+        }else if (age >= 10 && age < 16){
+            //code 101
+            throw new GirlException(ResultEnum.GO_JUNIOR_SCHOOL);
+        }
+
     }
 }

@@ -1,11 +1,14 @@
 package com.girl.model;
 
 import lombok.Data;
+import lombok.NonNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>@author minghui_zhang </p>
@@ -23,4 +26,6 @@ public class Girl {
     private String cupSize;
     @Min(value = 18,message = "未成年少女禁止入内")
     private Integer age;
+    @NotNull(message = "金额必填")
+    private Float money;
 }

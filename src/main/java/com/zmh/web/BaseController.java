@@ -1,6 +1,6 @@
 package com.zmh.web;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>@author minghuiZhang.</p>
@@ -9,5 +9,5 @@ import org.apache.log4j.Logger;
  * <p>modified By: </p>
  */
 public class BaseController {
-        protected final Logger logger = Logger.getLogger(BaseController.class);
+        protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 }
