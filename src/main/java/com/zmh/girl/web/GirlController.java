@@ -2,6 +2,7 @@ package com.zmh.girl.web;
 
 import com.zmh.girl.model.Girl;
 import com.zmh.girl.persistence.GirlRepository;
+import com.zmh.girl.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,8 @@ import java.util.List;
 public class GirlController {
     @Autowired
     private GirlRepository girlRepository;
-
+    @Autowired
+    private GirlService girlService;
     /**
      * 查询所有女生
      * minghuiZhang 2017-12-12 22:56:10
@@ -104,5 +106,11 @@ public class GirlController {
     public void girlDelete(@PathVariable("id") Integer id){
          girlRepository.delete(id);
     }
+
+    @PostMapping(value = "/girls/two")
+    public void girlAddTwo(){
+        girlService.saveTwo();
+    }
+
 }
 
