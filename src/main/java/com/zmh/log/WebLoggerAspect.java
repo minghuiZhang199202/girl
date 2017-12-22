@@ -23,6 +23,8 @@ import java.util.Arrays;
 @Component
 public class WebLoggerAspect extends BaseAspect{
 
+
+
     @Pointcut("execution(public * com.*.web.*.*(..))")
     public void webLog(){
     }
