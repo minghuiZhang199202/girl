@@ -2,11 +2,9 @@ package com.girl.web;
 
 import com.girl.model.Girl;
 import com.girl.model.Result;
-import com.girl.persistence.GirlRepository;
 import com.girl.service.GirlService;
-import com.sun.javafx.iio.gif.GIFDescriptor;
 import com.zmh.utils.ResultUtil;
-import com.zmh.web.BaseController;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +19,8 @@ import java.util.List;
  * <p>modified by   </p>
  */
 @RestController
-public class GirlController extends BaseController{
+@Slf4j
+public class GirlController{
     @Autowired
     private GirlService girlService;
 
@@ -44,7 +43,7 @@ public class GirlController extends BaseController{
     @PostMapping(value = "/girlAdd")
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            this.logger.info(bindingResult.getFieldError().toString());
+            log.info(bindingResult.getFieldError().toString());
             return ResultUtil.failure(1,bindingResult.getFieldError().getDefaultMessage());
         }
         return  ResultUtil.success(girlService.save(girl));
@@ -86,6 +85,7 @@ public class GirlController extends BaseController{
 
     @GetMapping(value = "/getAge/{id}")
     public void getAge(@PathVariable("id") Integer id)throws Exception{
+        log.info("");
         girlService.getAge(id);
     }
 

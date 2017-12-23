@@ -4,6 +4,7 @@ import com.girl.enums.ResultEnum;
 import com.girl.girlexception.GirlException;
 import com.girl.model.Girl;
 import com.girl.persistence.GirlRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -22,6 +23,7 @@ import java.util.List;
  * <p>modified By: </p>
  */
 @Service
+@Slf4j
 public class GirlService {
     @Autowired
     private GirlRepository girlRepository;
@@ -34,7 +36,7 @@ public class GirlService {
      */
     @Transactional(rollbackFor = Exception.class)
     public void saveTwo(){
-
+        log.info("sdfsd");
         Girl girlA  = new Girl();
         girlA.setName("李艳");
         girlA.setAge(24);

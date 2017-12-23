@@ -1,5 +1,6 @@
 package com.zmh.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -21,22 +22,25 @@ import java.util.Arrays;
 @Aspect()
 @Order(2)
 @Component
-public class HttpAspect extends BaseAspect{
+@Slf4j
 
-    @Pointcut("execution(public * com.girl.web.GirlController.girlList(..))")
+public class HttpAspect{
+
+    @Pointcut("execution(public * com.girl.web.GirlController.findAll(..))")
     public void httpAspect(){
 
     }
     @Before("httpAspect()")
     public void before(JoinPoint joinPoint){
+
         //接收到请求，记录请求内容
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         //记录下请求内容
-        this.logger.info("url:{}", request.getRequestURI());
-        this.logger.info("http_method:{}", request.getMethod());
-        this.logger.info("ip:{}", request.getRemoteAddr());
-        this.logger.info("class_method:{}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        this.logger.info("args:{} ", Arrays.toString(joinPoint.getArgs()));
+        log.info("url:{}", request.getRequestURI());
+        log.info("http_method:{}", request.getMethod());
+        log.info("ip:{}", request.getRemoteAddr());
+        log.info("class_method:{}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        log.info("args:{} ", Arrays.toString(joinPoint.getArgs()));
     }
 }

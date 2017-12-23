@@ -1,7 +1,6 @@
 package com.zmh.log;
 
-import com.zmh.aspect.BaseAspect;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
@@ -18,10 +17,11 @@ import java.util.Arrays;
  * <p>date: created in 9:22 2017/12/13</p>
  * <p>modified By: </p>
  */
+@Slf4j
 @Aspect
 @Order(5)
 @Component
-public class WebLoggerAspect extends BaseAspect{
+public class WebLoggerAspect{
 
     @Pointcut("execution(public * com.*.web.*.*(..))")
     public void webLog(){
@@ -35,28 +35,28 @@ public class WebLoggerAspect extends BaseAspect{
 
         //记录下请求内容
         //记录下请求内容
-        this.logger.info("url:{}", request.getRequestURI());
-        this.logger.info("http_method:{}", request.getMethod());
-        this.logger.info("ip:{}", request.getRemoteAddr());
-        this.logger.info("class_method:{}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        this.logger.info("args:{} ", Arrays.toString(joinPoint.getArgs()));
+        log.info("url:{}", request.getRequestURI());
+        log.info("http_method:{}", request.getMethod());
+        log.info("ip:{}", request.getRemoteAddr());
+        log.info("class_method:{}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        log.info("args:{} ", Arrays.toString(joinPoint.getArgs()));
 
     }
 
     @AfterReturning(returning = "ret",pointcut = "webLog()")
     public void doAfterReturning(Object ret)throws Throwable{
         //处理完请求，返回内容
-        this.logger.info("response:{}", ret);
-        this.logger.info("cost time:{} ",(System.currentTimeMillis() - startTime.get()));
+        log.info("response:{}", ret);
+        log.info("cost time:{} ",(System.currentTimeMillis() - startTime.get()));
     }
     @After("webLog()")
     public void after(JoinPoint joinPoint){
         String methodName = joinPoint.getSignature().getName();
-       this.logger.info("--后置通知--------  "+methodName+"方法执行结束");
+       log.info("--后置通知--------  "+methodName+"方法执行结束");
     }
     @AfterThrowing(pointcut = "webLog()",throwing = "ex")
     public void afterThrowing(JoinPoint joinPoint,Exception ex){
         String methodName = joinPoint.getSignature().getName();
-        this.logger.info("调用方法"+methodName+"出现异常："+ ex);
+        log.info("调用方法"+methodName+"出现异常："+ ex);
     }
 }
