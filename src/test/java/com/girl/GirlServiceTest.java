@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -20,9 +21,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class GirlServiceTest {
     @Autowired
     private GirlService girlService;
+
     @Test
     public void FindOneTest(){
-        Girl girl = girlService.findOne(3);
-        Assert.assertEquals(new Integer(22),girl.getAge());
+        Girl girl = girlService.findOne(2);
+        Assert.assertEquals(new Integer(23),girl.getAge());
     }
 }

@@ -19,3 +19,10 @@ girl:
 spring:
   thymeleaf:
     cache: false
+
+
+logging:
+  level:
+    com.loc.springboot: debug
+  file: "girl_log"
+

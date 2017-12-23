@@ -1,6 +1,8 @@
 package com.girl.persistence;
 
 import com.girl.model.Girl;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * <p>date  created in  22:45 / 2017/12/12</p>
  * <p>modified by   </p>
  */
+@CacheConfig(cacheNames = "girl")
 public interface GirlRepository extends JpaRepository<Girl,Integer> {
     /**
      * <p>此处方法命名格式固定，按照年龄查询必须为findByAge</p>

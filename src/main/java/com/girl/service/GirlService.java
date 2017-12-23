@@ -4,9 +4,17 @@ import com.girl.enums.ResultEnum;
 import com.girl.girlexception.GirlException;
 import com.girl.model.Girl;
 import com.girl.persistence.GirlRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>@author minghuiZhang.</p>
@@ -15,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * <p>modified By: </p>
  */
 @Service
+@Slf4j
 public class GirlService {
     @Autowired
     private GirlRepository girlRepository;
@@ -27,7 +36,7 @@ public class GirlService {
      */
     @Transactional(rollbackFor = Exception.class)
     public void saveTwo(){
-
+        log.info("sdfsd");
         Girl girlA  = new Girl();
         girlA.setName("李艳");
         girlA.setAge(24);
@@ -59,7 +68,42 @@ public class GirlService {
      * @author: minghuiZhang.
      * @date: created in 17:07 2017/12/13
      */
+    @Cacheable(value ="girl",key = "#id" )
     public Girl findOne(Integer id){
         return girlRepository.findOne(id);
     }
+
+    /**
+     * 按照年龄查询girl
+     * @param age
+     * @return
+     */
+    @Cacheable(value = "girl",key = "#age")
+    public List<Girl> findByAge(Integer age){
+        return girlRepository.findByAge(age);
+    }
+
+    /**
+     * 查询所有女生
+     * @return
+     */
+    @Cacheable(value = "girl")
+    public List<Girl> findAll(){
+        return girlRepository.findAll();
+    }
+    @CachePut(value = "girl")
+    public Girl save(Girl girl){
+        return girlRepository.save(girl);
+    }
+
+    @CacheEvict(value = "girl",key = "#id")
+    public void delete(Integer id) {
+        girlRepository.delete(id);
+    }
+
+    @CacheEvict(value = "girl", allEntries = true) // 移除所有数据
+    public void deleteAll() {
+        girlRepository.deleteAll();
+    }
+
 }
