@@ -6,10 +6,14 @@ import com.girl.service.GirlService;
 import com.zmh.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -31,7 +35,9 @@ public class GirlController{
      */
     @GetMapping(value = "/girls")
     public Result<Girl> findAll(){
+        log.info("absolute_path:{}",ClassUtils.getDefaultClassLoader().getResource("").getPath());
         return ResultUtil.success(girlService.findAll());
+
     }
 
     /**
@@ -46,6 +52,7 @@ public class GirlController{
             log.info(bindingResult.getFieldError().toString());
             return ResultUtil.failure(1,bindingResult.getFieldError().getDefaultMessage());
         }
+
         return  ResultUtil.success(girlService.save(girl));
     }
 

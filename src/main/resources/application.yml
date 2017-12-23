@@ -11,4 +11,3 @@ spring:
       ddl-auto: update
     #设为true，可以在控制台可以看到sql语句
     show-sql: true
-

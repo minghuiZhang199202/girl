@@ -22,7 +22,7 @@ import java.util.Arrays;
 @Order(5)
 @Component
 public class WebLoggerAspect{
-
+    protected final ThreadLocal<Long> startTime = new ThreadLocal <Long>();
     @Pointcut("execution(public * com.*.web.*.*(..))")
     public void webLog(){
     }
