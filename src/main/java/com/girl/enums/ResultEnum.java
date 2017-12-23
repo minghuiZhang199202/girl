@@ -9,7 +9,7 @@ import lombok.Data;
  * <p>modified By: </p>
  */
 public enum ResultEnum {
-    UNKNOW_ERROR(-1,"位置错误"),
+    UNKNOW_ERROR(-1,"未知错误"),
     SUCCESS(0,"成功"),
     GO_PRIMARY(100,"你可能上小学了吧"),
     GO_JUNIOR_SCHOOL(101,"你可能上初中了吧"),
